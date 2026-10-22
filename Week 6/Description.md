@@ -1,0 +1,7 @@
+| ID | Test case | Test data | Steps | Expected results |
+| --- | --- | --- | --- | --- |
+| TC-01 | Registration | New customer | Fill form; validate address auto-filling; submit. | Login page `/account` page appears; registration error disappears. |
+| TC-02 | Login | Registered customer; incorrect password | Enter an incorrect password and then enter the correct password. | Incorrect password displays a non-empty error message and does not let the user access account; correct password leads to page `/account`. |
+| TC-03 | Purchase | Product available; quantity = 2 | Log in; add product; verify cart; validate address auto-filling; pay with cash on delivery. | Positive price value; cart contains correct name and quantity; invoice request works successfully; non-empty order confirmation is displayed. |
+| TC-04 | Comparison | Two different products | Get names and prices of two products; add them into comparison. | Positive values for prices; table includes two names and matching prices with two decimal digits. |
+| TC-05 | Password reset request | Invalid email; registered email | Enter invalid email; refresh the form; enter registered email. | Invalid email has `aria-invalid="true"` validation and visible error block; registered email generates a non-empty success alert message. |

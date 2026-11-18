@@ -19,10 +19,17 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
+  /* Each CI shard uses one worker; four jobs run in parallel. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: process.env.CI
+    ? [
+        ['line'],
+        ['blob'],
+        ['junit', { outputFile: 'test-results/junit.xml' }],
+        ['html', { open: 'never' }],
+      ]
+    : 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     testIdAttribute: 'data-test',
